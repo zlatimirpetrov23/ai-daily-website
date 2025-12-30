@@ -1,7 +1,11 @@
+/**
+ * AI Daily - Основен JavaScript файл
+ * Версия: Професионална интеграция с Vercel API
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Мобилно Меню (Запазено) ---
+    // --- 1. Мобилно Меню ---
     const menuBtn = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('nav ul');
     
@@ -12,18 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. Чат Бот с CLAUDE API (Anthropic) ---
+    // --- 2. Чат Бот Логика (Vercel Serverless версия) ---
     const chatInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const chatWindow = document.getElementById('chat-window');
 
-    // ВАЖНО: Тук слагаш твоя ключ от console.anthropic.com
-    // Той започва с "sk-ant-..."
-    const ANTHROPIC_API_KEY = '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';
+    // ЗАБЕЛЕЖКА: Ключът вече НЕ е тук. Той е скрит в настройките на Vercel.
 
     if (chatInput && sendBtn && chatWindow) {
         
-        // Функция за добавяне на съобщение в екрана
+        /**
+         * Добавя балонче със съобщение в чат прозореца
+         */
         function addMsg(text, sender) {
             const msgDiv = document.createElement('div');
             msgDiv.classList.add('message', sender + '-message');
@@ -35,13 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
             msgDiv.appendChild(bubble);
             chatWindow.appendChild(msgDiv);
             
-            // Скролваме автоматично най-долу
+            // Автоматично скролване до най-новото съобщение
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
-        // Асинхронна функция за връзка с Claude
+        /**
+         * Изпраща съобщението до нашата сървърна функция във Vercel
+         */
         async function getClaudeResponse(userMessage) {
-            // Показваме, че ботът "мисли"...
+            // Създаваме индикатор за зареждане ("...")
             const loadingDiv = document.createElement('div');
             loadingDiv.classList.add('message', 'bot-message');
             loadingDiv.innerHTML = '<div class="bot-bubble">...</div>'; 
@@ -50,91 +56,72 @@ document.addEventListener('DOMContentLoaded', () => {
             chatWindow.scrollTop = chatWindow.scrollHeight;
 
             try {
-                // Изпращаме заявка към сървърите на Anthropic
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                // Извикваме нашия собствен API маршрут /api/chat
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {
-                        'x-api-key': ANTHROPIC_API_KEY,
-                        'anthropic-version': '2023-06-01',
-                        'content-type': 'application/json',
-                        // ТОЗИ РЕД Е ЗАДЪЛЖИТЕЛЕН, когато се ползва директно от браузър (script.js)
-                        'anthropic-dangerous-direct-browser-access': 'true'
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        model: "claude-3-sonnet-20240229", // Използваме модела Sonnet (бърз и умен)
-                        max_tokens: 1024,
-                        messages: [
-                            { role: "user", content: userMessage }
-                        ]
-                    })
+                    body: JSON.stringify({ message: userMessage })
                 });
 
                 const data = await response.json();
 
-                // Махаме балончето "..."
+                // Премахваме индикатора за зареждане
                 const loadingBubble = document.getElementById('loading-bubble');
                 if(loadingBubble) loadingBubble.remove();
 
-                // Проверяваме за грешки от API-то
+                // Проверка за грешки в отговора от сървъра
                 if (data.error) {
-                    console.error('API Error:', data.error);
-                    addMsg("Грешка: " + data.error.message, 'bot');
-                    return;
-                }
-
-                // Взимаме отговора (структурата на Claude е малко по-различна от OpenAI)
-                if (data.content && data.content.length > 0) {
-                    const aiReply = data.content[0].text;
-                    addMsg(aiReply, 'bot');
+                    console.error('Сървърна грешка:', data.error);
+                    addMsg("Грешка: " + (data.error.message || "Неуспешна комуникация с AI"), 'bot');
+                } else if (data.content && data.content.length > 0) {
+                    // Показваме отговора от Claude
+                    addMsg(data.content[0].text, 'bot');
+                } else {
+                    addMsg("Ботът не върна съдържание. Проверете логовете във Vercel.", 'bot');
                 }
 
             } catch (error) {
-                // Ако няма интернет или ключът е грешен
+                // Махаме индикатора при грешка в мрежата
                 const loadingBubble = document.getElementById('loading-bubble');
                 if(loadingBubble) loadingBubble.remove();
                 
-                console.error('Fetch error:', error);
-                addMsg("Грешка при връзката! Проверете конзолата (F12) за детайли.", 'bot');
+                console.error('Грешка при fetch:', error);
+                addMsg("Възникна грешка при връзката със сървъра. Уверете се, че сайтът е качен във Vercel.", 'bot');
             }
         }
 
-        // Обработка на клик върху бутона "Изпрати"
+        /**
+         * Слушател за клик върху бутона за изпращане
+         */
         sendBtn.addEventListener('click', () => {
             const text = chatInput.value.trim();
             
             if (text) {
-                // 1. Показваме твоето съобщение
                 addMsg(text, 'user');
-                chatInput.value = ''; // Чистим полето
-                
-                // 2. Проверка за API ключ
-                if (!ANTHROPIC_API_KEY || ANTHROPIC_API_KEY.includes('ТУК_СЛОЖИ')) {
-                    setTimeout(() => {
-                        addMsg("Липсва API ключ! Моля, добавете го в script.js.", 'bot');
-                    }, 500);
-                } else {
-                    // 3. Викаме Claude
-                    getClaudeResponse(text);
-                }
+                chatInput.value = ''; // Изчистване на полето за въвеждане
+                getClaudeResponse(text);
             }
         });
 
-        // Изпращане с Enter
+        /**
+         * Слушател за натискане на клавиша Enter
+         */
         chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendBtn.click();
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
         });
     }
     
-    // --- 3. Контактна форма (Запазена) ---
+    // --- 3. Контактна форма ---
     const form = document.querySelector('form');
     if(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert("Благодарим ви! Вашето съобщение беше изпратено.");
+            alert("Благодарим ви! Вашето съобщение беше изпратено успешно.");
             form.reset();
         });
     }
-
 });
-
-
