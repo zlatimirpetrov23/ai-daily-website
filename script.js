@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ВАЖНО: Тук слагаш твоя ключ от console.anthropic.com
     // Той започва с "sk-ant-..."
-    const ANTHROPIC_API_KEY = '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'; 
+    const ANTHROPIC_API_KEY = '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';
 
     if (chatInput && sendBtn && chatWindow) {
         
@@ -134,4 +134,5 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
         });
     }
+
 });
