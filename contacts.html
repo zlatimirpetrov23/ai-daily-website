@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<!-- Основна структура на HTML документа -->
 <html lang="bg">
+<!-- Заглавна част на с мета тагове и връзки към стилове -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +10,21 @@
     <link rel="icon" type="image/png" href="https://img.icons8.com/dusk/64/000000/artificial-intelligence.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+<!-- Основно тяло на страницата -->
 <body>
 
+    <!-- Хедър с лого и навигация -->
     <header>
         <div class="container header-content">
+            <!-- Лого връзка към началната страница -->
             <a href="index.html" class="logo-link">
                 <img src="https://img.icons8.com/dusk/64/000000/artificial-intelligence.png" alt="AI Logo" class="logo-img">
-                <div class="logo-text">AI Daily</div>
+                <div class="logo-text-group">
+                    <div class="logo-text">AI Daily</div>
+                    <div class="slogan">Бъдещето е тук</div>
+                 </div>
             </a>
+            <!-- Навигация -->
             <nav>
                 <ul>
                     <li><a href="index.html">Начало</a></li>
@@ -27,6 +36,7 @@
                     <li><a href="contacts.html" class="active">Контакти</a></li>
                 </ul>
             </nav>
+            <!-- Бутон за мобилно меню -->
             <div class="menu-toggle">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -35,10 +45,13 @@
         </div>
     </header>
 
+    <!-- Секция за контактна форма -->
     <section class="container">
         <h2>Контакти</h2>
+        <!-- Контейнер за конт. форма -->
         <div class="contact-box">
             <p>Свържете се с мен: Златимир Петров</p>
+            <!-- Форма за контакт -->
             <form>
                 <input type="text" placeholder="Име" required>
                 <input type="email" placeholder="Email" required>
@@ -48,9 +61,11 @@
         </div>
     </section>
 
+    <!-- Футър -->
     <footer>
         <p>&copy; 2025 Златимир Петров 126425411@naval-acad.bg. Всички права запазени.</p>
     </footer>
+    <!-- Включване на JavaScript файла -->
     <script src="script.js"></script>
 </body>
 </html>

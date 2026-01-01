@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<!-- структура на HTML документа -->
 <html lang="bg">
+<!-- Заглавна част с мета тагове и връзки към стилове -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +10,21 @@
    <link rel="icon" type="image/png" href="https://img.icons8.com/dusk/64/000000/artificial-intelligence.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+<!-- Основно тяло на страницата -->
 <body>
 
+    <!-- Хедър с лого и навигация -->
     <header>
         <div class="container header-content">
+            <!-- Лого връзка към началната страница -->
             <a href="index.html" class="logo-link">
                 <img src="https://img.icons8.com/dusk/64/000000/artificial-intelligence.png" alt="AI Logo" class="logo-img">
-                <div class="logo-text">AI Daily</div>
+                <div class="logo-text-group">
+                    <div class="logo-text">AI Daily</div>
+                    <div class="slogan">Бъдещето е тук</div>
+                 </div>
             </a>
+            <!-- Навигационно меню -->
             <nav>
                 <ul>
                     <li><a href="index.html">Начало</a></li>
@@ -27,6 +36,7 @@
                     <li><a href="contacts.html">Контакти</a></li>
                 </ul>
             </nav>
+            <!-- Бутон за мобилно меню -->
             <div class="menu-toggle">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -35,19 +45,23 @@
         </div>
     </header>
 
+    <!-- Основна секция за бъдещето на AI -->
     <section class="container">
         <h2>Хоризонт 2050: Какво следва?</h2>
         
+        <!-- Въвеждащ текст за бъдещето -->
         <div style="max-width: 800px; margin: 0 auto 40px auto; text-align: center;">
             <p>
                 Намираме се на прага на технологична революция, сравнима с откриването на огъня или електричеството. Въпросът вече не е "какво може AI", а "какво ще остане за хората?".
             </p>
         </div>
 
+        <!-- Заглавие за сравнение между биология и силиций -->
         <h3 style="border-left: 4px solid var(--neon-purple); padding-left: 15px; margin-bottom: 20px;">
             Състезанието: Биология срещу Силиций
         </h3>
         
+        <!-- Таблица за сравнение между човешки мозък и AI -->
         <div class="table-responsive">
             <table>
                 <thead>
@@ -82,12 +96,16 @@
             </table>
         </div>
 
+        <!-- Разделителна линия -->
         <hr style="border: 1px solid var(--neon-blue); margin: 50px 0; opacity: 0.3;">
 
+        <!-- Заглавие за трите пътя пред човечеството -->
         <h2>Трите Пътя пред Човечеството</h2>
         <p style="text-align: center; margin-bottom: 30px;">Футуролозите чертаят три основни сценария за следващите десетилетия:</p>
 
+        <!-- Контейнер с карти за трите сценария -->
         <div class="grid-container">
+            <!-- Карта -->
             <div class="card">
                 <h3>🚀 1. Сингулярност (2045г.)</h3>
                 <p>
@@ -97,6 +115,7 @@
                 </p>
             </div>
 
+            <!-- Карта 2 -->
             <div class="card">
                 <h3>🔗 2. Симбиоза (Neuralink)</h3>
                 <p>
@@ -106,6 +125,7 @@
                 </p>
             </div>
 
+            <!-- Карта 3 -->
             <div class="card">
                 <h3>🌌 3. Експанзия</h3>
                 <p>
@@ -116,6 +136,7 @@
             </div>
         </div>
 
+        <!-- Блок с етичен въпрос -->
         <div class="info-block" style="margin-top: 50px; background: rgba(22, 33, 62, 0.8); padding: 20px; border-radius: 10px; border: 1px dashed var(--neon-purple);">
             <h3>⚖️ Големият Етичен Въпрос</h3>
             <p>
@@ -124,9 +145,11 @@
         </div>
     </section>
 
+    <!-- Футър -->
     <footer>
         <p>&copy; 2025 Златимир Петров 126425411@naval-acad.bg. Всички права запазени.</p>
     </footer>
+    <!-- Включване на JavaScript файла -->
     <script src="script.js"></script>
 </body>
 </html>

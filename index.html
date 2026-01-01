@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<!-- Основна структура на HTML документа -->
 <html lang="bg">
+<!-- Заглавна част с мета тагове и връзки към стилове -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +10,21 @@
    <link rel="icon" type="image/png" href="https://img.icons8.com/dusk/64/000000/artificial-intelligence.png"> 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+<!-- Основно тяло на страницата -->
 <body>
 
+    <!-- Хедър с лого и навигация -->
     <header>
         <div class="container header-content">
+            <!-- Лого връзка към началната страница -->
             <a href="index.html" class="logo-link">
                 <img src="https://img.icons8.com/dusk/64/000000/artificial-intelligence.png" alt="AI Logo" class="logo-img">
-                <div class="logo-text">AI Daily</div>
+                <div class="logo-text-group">
+                    <div class="logo-text">AI Daily</div>
+                    <div class="slogan">Бъдещето е тук</div>
+                 </div>
             </a>
+            <!-- Навигация -->
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Начало</a></li>
@@ -27,6 +36,7 @@
                     <li><a href="contacts.html">Контакти</a></li>
                 </ul>
             </nav>
+            <!-- Бутон за мобилно меню -->
             <div class="menu-toggle">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -35,14 +45,17 @@
         </div>
     </header>
 
+    <!-- секция с основно заглавие и бутон -->
     <section id="hero">
         <div class="hero-content">
             <h1><span style="color: var(--neon-blue);">AI в твоето ежедневие</span></h1>
           <br>
+            <!-- Бутон за достъп до чатбота -->
             <a href="chatbot.html" class="btn main-cta">Разкрий Магията &rarr;</a>
         </div>
     </section>
 <br>
+    <!-- Основна секция с инфо -->
     <section class="container">
         <h2>Изкуственият интелект в ежедневието ни</h2>
         <p style="margin-bottom: 20px;">
@@ -52,7 +65,9 @@
             Целта на AI в ежедневието е да направи живота по-лесен, по-безопасен и по-персонализиран. Ето най-честите примери, с които се сблъскваме всеки ден:
         </p>
 
+        <!-- Контейнер с примери за AI в ежедневието -->
         <div class="grid-container">
+            <!-- Карта за смартфони -->
             <div class="card">
                 <h3>📱 Смартфони</h3>
                 <p>
@@ -60,6 +75,7 @@
                 </p>
             </div>
 
+            <!-- Карта за социални мрежи -->
             <div class="card">
                 <h3>🌐 Социални Мрежи</h3>
                 <p>
@@ -67,6 +83,7 @@
                 </p>
             </div>
 
+            <!-- Карта за навигация -->
             <div class="card">
                 <h3>🚗 Навигация</h3>
                 <p>
@@ -74,6 +91,7 @@
                 </p>
             </div>
 
+            <!-- Карта за забавление -->
             <div class="card">
                 <h3>🎬 Забавление</h3>
                 <p>
@@ -81,6 +99,7 @@
                 </p>
             </div>
 
+            <!-- Карта за електронна поща -->
             <div class="card">
                 <h3>📧 Електронна поща</h3>
                 <p>
@@ -88,6 +107,7 @@
                 </p>
             </div>
 
+            <!-- Карта за онлайн пазаруване -->
             <div class="card">
                 <h3>💳 Онлайн Пазаруване</h3>
                 <p>
@@ -99,9 +119,11 @@
         <br>
     </section>
 
+    <!-- Футър -->
     <footer>
         <p>&copy; 2025 Златимир Петров 126425411@naval-acad.bg. Всички права запазени.</p>
     </footer>
+    <!-- Включване на JavaScript файла -->
     <script src="script.js"></script>
 </body>
 </html>
